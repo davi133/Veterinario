@@ -1,1 +1,1 @@
-Projeto de gerenciador de veterínário para a disciplina de "Tópicos em Computação e Informática I"
+Projeto de gerenciador de veterinário para a disciplina de "Tópicos em Computação e Informática I"
