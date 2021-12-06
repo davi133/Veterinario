@@ -51,7 +51,7 @@ public class ClienteController implements Initializable{
     
     ObservableList<Cliente> lista = FXCollections.observableArrayList(ClienteDAO.getInstance().retrieveAll());
  
-    @Override
+   
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	if (isFirstInstance)
 		{

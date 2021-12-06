@@ -40,8 +40,10 @@ public class ControllerMainView implements Initializable {
 		System.out.println("funciona");
 		
 	}
+
+
+
 	
-	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ClienteTableController.InjectSelecionadosController(VerSelecionadosController);
 		
