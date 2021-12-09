@@ -41,8 +41,10 @@ public class FichaCliente extends AnchorPane implements Initializable {
 	@FXML private TextField txt_email;
 	@FXML private TextField txt_endereco;
 	@FXML private TextField txt_telefone;
-	@FXML private Button btnDelete2;
+	
+	@FXML private Button btnDelete;
 	@FXML private Button btnSave;
+	@FXML private Button btnSelect;
 
 
 	@Override
@@ -54,6 +56,11 @@ public class FichaCliente extends AnchorPane implements Initializable {
 			txt_endereco.setText(cliente.getEndereco());
 			txt_CEP.setText(cliente.getCep());
 			txt_telefone.setText(cliente.getTelefone());
+			
+		}
+		else
+		{
+			btnSelect.setDisable(true);
 		}
 		
 		//if(testVar==10) System.out.println("hello there");
@@ -94,6 +101,7 @@ public class FichaCliente extends AnchorPane implements Initializable {
 		
 		if (cliente==null) 
 		{
+			//salvar novo cliente
 			cliente = ClienteDAO.getInstance().create(txt_Nome.getText(), 
 													  txt_endereco.getText(),
 													  txt_CEP.getText(), 
@@ -101,11 +109,11 @@ public class FichaCliente extends AnchorPane implements Initializable {
 													  txt_telefone.getText());
 			clienteCtrl.getTable().getItems().add(cliente);
 			lbl_ID.setText("" + cliente.getId());
+			btnSelect.setDisable(false);
 		} 
 		else 
 		{
-			
-
+			//salvar edição
 			cliente.setNome(txt_Nome.getText());
 			cliente.setEndereco(txt_endereco.getText());
 			cliente.setEmail(txt_email.getText());
@@ -152,6 +160,10 @@ public class FichaCliente extends AnchorPane implements Initializable {
 
 	@FXML private void Selecionar()
 	{
-		clienteCtrl.getSelectCtrl().setCliente(cliente);
+		if (cliente != null) 
+		{
+			clienteCtrl.getSelectCtrl().setCliente(cliente);
+			btnSelect.setDisable(false);
+		}
 	}
 }

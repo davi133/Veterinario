@@ -49,7 +49,7 @@
       <TextField fx:id="txt_telefone" layoutX="171.0" layoutY="171.0" AnchorPane.leftAnchor="171.0" />
       <TextField fx:id="txt_endereco" layoutX="171.0" layoutY="208.0" AnchorPane.leftAnchor="171.0" />
       <TextField fx:id="txt_CEP" layoutX="171.0" layoutY="255.0" AnchorPane.leftAnchor="171.0" />
-      <Button fx:id="btnDelete2" layoutX="47.0" layoutY="362.0" mnemonicParsing="false" onAction="#Excluir" text="Excluir" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="50.0" />
-      <Button layoutX="194.0" layoutY="362.0" mnemonicParsing="false" onAction="#Selecionar" text="Selecionar" AnchorPane.leftAnchor="194.0" />
+      <Button fx:id="btnDelete" layoutX="47.0" layoutY="362.0" mnemonicParsing="false" onAction="#Excluir" text="Excluir" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="50.0" />
+      <Button fx:id="btnSelect" layoutX="194.0" layoutY="362.0" mnemonicParsing="false" onAction="#Selecionar" text="Selecionar" AnchorPane.leftAnchor="194.0" />
    </children>
 </fx:root>

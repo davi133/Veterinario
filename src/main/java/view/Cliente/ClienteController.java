@@ -99,12 +99,15 @@ public class ClienteController implements Initializable{
     		alert.setContentText("Deletar "+cliente.getNome()+"(id: "+cliente.getId()+")?");
     		Optional<ButtonType> result = alert.showAndWait();
     		if (result.get() == ButtonType.OK){
+    			
+    			if(selecionadosController.getCliente()!=null &&
+    			   selecionadosController.getCliente().getId()==cliente.getId())
+    				selecionadosController.setCliente(null);
+    			
     			ClienteDAO.getInstance().delete(cliente);
     			Table.getItems().remove(cliente);
     			Table.refresh();
     			
-    			if(selecionadosController.getCliente().getId()==cliente.getId())
-    				selecionadosController.setCliente(null);
     			
     			return true;
     		}
@@ -117,6 +120,7 @@ public class ClienteController implements Initializable{
     	}
     }
     
+    //provavelmente inútil
     public boolean Adicionar(Cliente cliente)
     {
     	if (cliente !=null)
