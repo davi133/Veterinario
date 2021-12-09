@@ -66,11 +66,15 @@ public class ClienteDAO extends DAO {
 	{
 		return retrieve("SELECT * FROM cliente");
 	}
-	public List retrieve(String query)
+	public List retrieveAll(int top)
+	{
+		return retrieve("SELECT * FROM cliente LIMIT"+top);
+	}
+	public List<Cliente> retrieve(String query)
 	{
 		List<Cliente> clientes = new ArrayList();
         ResultSet rs = getResultSet(query);
-        
+        if(rs==null)return null;
         try 
         {
         	

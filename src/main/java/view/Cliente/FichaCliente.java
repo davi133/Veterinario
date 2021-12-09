@@ -62,9 +62,7 @@ public class FichaCliente extends AnchorPane implements Initializable {
 		{
 			btnSelect.setDisable(true);
 		}
-		
-		//if(testVar==10) System.out.println("hello there");
-		
+
 			
 		
 		
@@ -121,7 +119,8 @@ public class FichaCliente extends AnchorPane implements Initializable {
 			cliente.setTelefone(txt_telefone.getText());
 
 			
-			if(clienteCtrl.getSelectCtrl().getCliente().getId()==cliente.getId())
+			if(clienteCtrl.getSelectCtrl().getCliente()!=null &&
+			   clienteCtrl.getSelectCtrl().getCliente().getId()==cliente.getId())
 				clienteCtrl.getSelectCtrl().setCliente(cliente);
 			
 			
@@ -163,7 +162,7 @@ public class FichaCliente extends AnchorPane implements Initializable {
 		if (cliente != null) 
 		{
 			clienteCtrl.getSelectCtrl().setCliente(cliente);
-			btnSelect.setDisable(false);
+			
 		}
 	}
 }

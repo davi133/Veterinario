@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Cliente.ClienteController">
    <children>
@@ -22,9 +25,16 @@
          </columnResizePolicy>
       </TableView>
       <Button fx:id="btnNew" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#novoCliente" text="Novo" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnDelete" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" onAction="#excluirSelecionado" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnEdit" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#editarSelecionado" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnDelete" disable="true" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" onAction="#excluirSelecionado" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnEdit" disable="true" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#editarSelecionado" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="btnSearch" layoutX="366.0" layoutY="14.0" mnemonicParsing="false" onAction="#procurar" text="pesquisar" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="14.0" />
-      <TextField fx:id="txtFSearch" layoutX="197.0" layoutY="14.0" promptText="pesquisar" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="txtFSearch" layoutX="197.0" layoutY="14.0" onKeyPressed="#procurarPorEnter" promptText="pesquisar" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="14.0" />
+      <ComboBox fx:id="cbCriterio" layoutX="433.0" layoutY="14.0" prefWidth="150.0" promptText=" Critério de busca" AnchorPane.leftAnchor="433.0" AnchorPane.topAnchor="14.0" />
+      <Text layoutX="592.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Limite:" wrappingWidth="50.0" AnchorPane.leftAnchor="592.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtLimite" alignment="CENTER_RIGHT" layoutX="650.0" layoutY="17.0" prefHeight="25.0" prefWidth="45.0" promptText="10" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

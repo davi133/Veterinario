@@ -4,6 +4,7 @@ package view.Cliente;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,28 +22,32 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Cliente;
 import model.ClienteDAO;
+import view.Criterio;
 import view.SelecionadosController;
 
 public class ClienteController implements Initializable{
 
 	
-	private static Cliente Selecionado=null;
+	
 	private SelecionadosController selecionadosController;
-	private static boolean isFirstInstance = true;
-	private static boolean isEditing = false;
+	
+	
 	//false: creating new register
 	//true: editing selected register
 	
     @FXML private TableView<Cliente> Table;
-    private static TableView<Cliente> tabelaStatic;
+   
     @FXML private TableColumn<Cliente, Integer> table_id;
     @FXML private TableColumn<Cliente, String> table_nome;
     @FXML private TableColumn<Cliente, String> table_email;
@@ -61,17 +67,36 @@ public class ClienteController implements Initializable{
 		table_endereco.setCellValueFactory(new PropertyValueFactory<Cliente, String>("endereco"));
 		table_CEP.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cep"));
 		Table.setItems(lista);
-		tabelaStatic=Table;
+		
 		
 		Table.getSelectionModel().selectedItemProperty().addListener(
 			(observable, oldValue, newValue)->
 			{
-				Selecionado = newValue;
 				selecionadosController.setCliente(newValue);
-					
+				btnEdit.setDisable(newValue==null);
+				btnDelete.setDisable(newValue==null);
 			}
 			);
+		txtLimite.textProperty().addListener(
+				(observable, oldValue, newValue)->
+				{							
+					if (newValue!=null && !newValue.matches("\\d*"))
+					{
+						txtLimite.setText(oldValue);
+					}
+					else if (newValue!=null && !newValue.isBlank()&& Integer.parseInt(newValue)>1000)
+					{
+						txtLimite.setText(""+1000);
+					}
+					
+					
+					
+				}
+				
+				
+				);
 		
+		cbCriterio.getItems().addAll(criterios);
 		
 		
 	}
@@ -158,7 +183,10 @@ public class ClienteController implements Initializable{
     }  
     @FXML private void editarSelecionado()
     {
-    	
+    	if (selecionadosController.getCliente()==null)
+    		return;
+    	FichaCliente fc = new FichaCliente(selecionadosController.getCliente(), this);
+    	fc.Show("novo cliente");
     }
     
     
@@ -166,24 +194,59 @@ public class ClienteController implements Initializable{
     
     @FXML private TextField txtFSearch;
     @FXML private Button btnSearch;
+    @FXML private ComboBox<Criterio> cbCriterio;
+    @FXML private TextField txtLimite;
+    private int limitePadrao=10;
     
+    private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
+    				Criterio.CriterioDeID(),
+    				new Criterio("Nome","nome LIKE '%{value}%'"),
+    				new Criterio("Email","email LIKE '%{value}%'"),
+    				new Criterio("Telefone","telefone LIKE '%{value}%'"),
+    				new Criterio("Endereço","end LIKE '%{value}%'"),
+    				new Criterio("CEP","cep LIKE '%{value}%'")
+    				);
     @FXML private void procurar()
     {
+    	ClienteDAO DaoInstance = ClienteDAO.getInstance();
+    	
+    	String query;
     	String oTexto = txtFSearch.getText();
-    	if(oTexto.isEmpty())
-    	{
-    		Table.setItems(FXCollections.observableArrayList(ClienteDAO.getInstance().retrieveAll()));
+    	String limite= txtLimite.getText().isBlank()?""+limitePadrao:txtLimite.getText();
+    	Criterio crit = cbCriterio.getValue()==null?Criterio.CriterioDeID():cbCriterio.getValue();
+    	
+    	
+    	try {
+    		if (!oTexto.isBlank())
+    		{
+    			query = "SELECT * FROM cliente WHERE "+ crit.getQuery(oTexto) + " LIMIT "+limite+";";
+    		}
+    		else
+    		{
+    			query = "SELECT * FROM cliente LIMIT "+limite+";";
+    		}
+    		
+    		//System.out.println(query);
+    		List<Cliente> lista = DaoInstance.retrieve(query);
+    		ObservableList<Cliente> listaOBS = FXCollections.observableArrayList(lista);
+    		
+    		Table.setItems(listaOBS);
     	}
-    	else if (onlyDigits(oTexto))
+    	catch (Exception e)
     	{
-    		Table.setItems(FXCollections.observableArrayList(ClienteDAO.getInstance().retrieveByID(Integer.parseInt(oTexto))));
+    		System.out.println(e.getMessage());
     	}
-    	else
-    	{
-    		Table.setItems(FXCollections.observableArrayList(ClienteDAO.getInstance().retrieveBySimilarName(oTexto)));
-    	}
+    	
     	Table.refresh();
     	
+    }
+    
+    @FXML
+    void procurarPorEnter(KeyEvent event) {
+    	if( event.getCode() == KeyCode.ENTER ) 
+    	{
+    		procurar();
+		}
     }
     
   //Copiado de https://www.geeksforgeeks.org/how-to-check-if-string-contains-only-digits-in-java/
