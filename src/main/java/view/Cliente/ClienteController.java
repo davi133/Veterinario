@@ -34,7 +34,7 @@ public class ClienteController implements Initializable{
 
 	
 	private static Cliente Selecionado=null;
-	private static SelecionadosController selecionadosController;
+	private SelecionadosController selecionadosController;
 	private static boolean isFirstInstance = true;
 	private static boolean isEditing = false;
 	//false: creating new register
@@ -53,8 +53,6 @@ public class ClienteController implements Initializable{
  
    
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	if (isFirstInstance)
-		{
     	
     	table_id.setCellValueFactory( new PropertyValueFactory<Cliente, Integer>("id"));
 		table_nome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
@@ -66,85 +64,101 @@ public class ClienteController implements Initializable{
 		tabelaStatic=Table;
 		
 		Table.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue)->
-				{
-					Selecionado = newValue;
-					selecionadosController.setCliente(newValue);
+			(observable, oldValue, newValue)->
+			{
+				Selecionado = newValue;
+				selecionadosController.setCliente(newValue);
 					
-				}
-				);
+			}
+			);
 		
-		isFirstInstance=false;
-		}
-    	else if (isEditing)
-    	{
-    		lbl_ID.setText(""+Selecionado.getId());
-    		txt_Nome.setText(Selecionado.getNome());
-    		txt_email.setText(Selecionado.getEmail());
-    		txt_endereco.setText(Selecionado.getEndereco());
-    		txt_CEP.setText(Selecionado.getCep());
-    		txt_telefone.setText(Selecionado.getTelefone());
-    		toEdit = Selecionado;
-    	}
+		
+		
 	}
     
     public void InjectSelecionadosController(SelecionadosController sc)
     {
     	selecionadosController=sc;
     }
-
-    @FXML private Button btnNew;
-    @FXML private Button btnDelete;
-    @FXML private Button btnEdit;
+    public SelecionadosController getSelectCtrl()
+    {
+    	return selecionadosController;
+    }
+    public TableView<Cliente> getTable()
+    {
+    	return Table;
+    }
     
-    private void ClienteSheet(String nome)
-    {		
-			Stage stage = new Stage();
-			Parent root = null;
-			try {
-				root = FXMLLoader.load(getClass().getResource("ViewNewCliente.fxml"));
-			} catch (IOException e) {
-				System.out.println("sadsadasd");
-				e.printStackTrace();
-			}
-			Scene scene = new Scene(root);
-			stage.setTitle(nome);
-			stage.setScene(scene);
-			
-			stage.showAndWait();
-    }
-    @FXML private void novoCliente()
+    public boolean Excluir(Cliente cliente)
     {
-    	isEditing=false;
-    	ClienteSheet("Novo Cliente");
-    }
-    @FXML private void excluirSelecionado()
-    {
-    	if (Selecionado !=null) 
+    	if(cliente !=null)
     	{
     		Alert alert = new Alert(AlertType.CONFIRMATION);
     		alert.setTitle("Confirmação");
     		alert.setHeaderText("Deseja mesmo deletar esse registro?");
-    		alert.setContentText("Deletar "+Selecionado.getNome()+"("+Selecionado.getId()+")?");
+    		alert.setContentText("Deletar "+cliente.getNome()+"(id: "+cliente.getId()+")?");
     		Optional<ButtonType> result = alert.showAndWait();
     		if (result.get() == ButtonType.OK){
-    			ClienteDAO.getInstance().delete(Selecionado);
-    			tabelaStatic.getItems().remove(Selecionado);
+    			ClienteDAO.getInstance().delete(cliente);
+    			Table.getItems().remove(cliente);
+    			Table.refresh();
     			
-    		} 
+    			if(selecionadosController.getCliente().getId()==cliente.getId())
+    				selecionadosController.setCliente(null);
+    			
+    			return true;
+    		}
+    		
+    		return false;
     	}
+    	else
+    	{
+    		return true;
+    	}
+    }
+    
+    public boolean Adicionar(Cliente cliente)
+    {
+    	if (cliente !=null)
+    	{
+    		Table.getItems().add(cliente);
+    		Table.refresh();
+    		
+    		return true;
+    	}
+    	return false;
     	
+    }
+    
+    
+    
+    
+    
+    //BOTOES ->
+    
+    @FXML private Button btnNew;
+    @FXML private Button btnDelete;
+    @FXML private Button btnEdit;
+    
+    
+ 
+    @FXML private void novoCliente()
+    {
+    	FichaCliente fc = new FichaCliente(null, this);
+    	fc.Show("novo cliente");
+    }
+    
+    @FXML private void excluirSelecionado()
+    {
+    	Excluir(selecionadosController.getCliente());
     }  
     @FXML private void editarSelecionado()
     {
-    	Selecionado = Table.getSelectionModel().getSelectedItem();
     	
-    	if (Selecionado !=null) 
-    	{
-    		isEditing=true;
-    		ClienteSheet("Editar Cliente");
-    	}
     }
+    
+    
+    //PESQUISA ->
     
     @FXML private TextField txtFSearch;
     @FXML private Button btnSearch;
@@ -190,80 +204,9 @@ public class ClienteController implements Initializable{
         return m.matches();
     }
     
-    //Parte da ViewNewCliente.fxml
     
-    private Cliente toEdit;
-    @FXML private Label lbl_ID;
-    @FXML private TextField txt_CEP;
-    @FXML private TextField txt_Nome;
-    @FXML private TextField txt_email;
-    @FXML private TextField txt_endereco;
-    @FXML private TextField txt_telefone;
-    @FXML private Button btnDelete2;
-    @FXML private Button btnSave;
-
-    @FXML private void Salvar()
-    {
-    	if (!isEditing) {
-    	Cliente novo = ClienteDAO.getInstance().create(txt_Nome.getText(), 
-    												   txt_endereco.getText(), 
-    												   txt_CEP.getText(),
-    												   txt_email.getText(), 
-    												   txt_telefone.getText());
-    	tabelaStatic.getItems().add(novo);
-    	}
-    	else
-    	{
-    		Cliente selected = toEdit;
-    		
-    		selected.setNome(txt_Nome.getText());
-    		selected.setEndereco(txt_endereco.getText());
-    		selected.setEmail(txt_email.getText());
-    		selected.setCep( txt_CEP.getText());
-    		selected.setTelefone(txt_telefone.getText());
-    		
-    		selecionadosController.setCliente(Selecionado);
-    		ClienteDAO.getInstance().update(selected);
-    		tabelaStatic.refresh();
-    		
-    	}
-    	
-        Stage stage = (Stage) btnSave.getScene().getWindow();
-        stage.close();
-        isEditing = false;
-
-    }
-    @FXML private void Excluir()
-    {
-    	
-    	if(isEditing)
-    	{
-    		if (Selecionado !=null) 
-        	{
-        		Alert alert = new Alert(AlertType.CONFIRMATION);
-        		alert.setTitle("Confirmação");
-        		alert.setHeaderText("Deseja mesmo deletar esse registro?");
-        		alert.setContentText("Deletar "+Selecionado.getNome()+"("+Selecionado.getId()+")?");
-        		Optional<ButtonType> result = alert.showAndWait();
-        		if (result.get() == ButtonType.OK){
-        			ClienteDAO.getInstance().delete(toEdit);
-        			tabelaStatic.getItems().remove(toEdit);
-        			
-        			Stage stage = (Stage) btnSave.getScene().getWindow();
-        	        stage.close();
-        	        isEditing = false;
-        		} 
-        	}
-    	}
-    	else
-    	{
-    		Stage stage = (Stage) btnSave.getScene().getWindow();
-            stage.close();
-            isEditing = false;
-    	}
-    	
-    	
-    }
+    
+   
 	
 	
 }
