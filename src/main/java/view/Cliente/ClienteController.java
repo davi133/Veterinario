@@ -170,8 +170,7 @@ public class ClienteController implements Initializable{
     {
     	FichaCliente fc = new FichaCliente(null, this);
     	fc.Show("novo cliente");
-    }
-    
+    }  
     @FXML private void excluirSelecionado()
     {
     	Excluir(selecionadosController.getCliente());
@@ -238,12 +237,12 @@ public class ClienteController implements Initializable{
     	
     }
     
-    @FXML
-    void procurarPorEnter(KeyEvent event) {
+    @FXML void procurarPorEnter(KeyEvent event) {
     	if( event.getCode() == KeyCode.ENTER ) 
     	{
     		procurar();
 		}
     }
 	
+   
 }

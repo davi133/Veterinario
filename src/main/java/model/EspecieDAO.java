@@ -101,15 +101,18 @@ private static EspecieDAO instesce;
 	{
         return this.retrieve("SELECT * FROM especie WHERE nome LIKE '%" + nome + "%'");
     }   
+	public List retrieveBySimilarName(String nome, int top) 
+	{
+        return this.retrieve("SELECT * FROM especie WHERE nome LIKE '%" + nome + "%' LIMIT "+top);
+    }  
 	
 	//Update
 	public void update(Especie es)
 	{
 		try {
 			
-			executeUpdate("UPDATE Especie SET"
-					+ "nome = "+ es.getNome()
-					+ " WHERE id ="+ es.getId()
+			executeUpdate("UPDATE Especie SET nome = '"+ es.getNome()
+					+ "' WHERE id ="+ es.getId()
 					);
 		
 		} 

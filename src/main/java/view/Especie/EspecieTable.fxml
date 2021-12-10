@@ -20,15 +20,15 @@
          </columnResizePolicy>
       </TableView>
       <Button fx:id="btnNew" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#novoRegistro" text="Novo" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnDelete" disable="true" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnEdit" disable="true" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="btnSearch" layoutX="366.0" layoutY="14.0" mnemonicParsing="false" text="pesquisar" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="14.0" />
-      <TextField fx:id="txtFSearch" layoutX="197.0" layoutY="14.0" promptText="pesquisar" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnDelete" disable="true" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" onAction="#excluirSelecionado" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnEdit" disable="true" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#editarSelecionado" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnSearch" layoutX="366.0" layoutY="14.0" mnemonicParsing="false" onAction="#procurar" text="pesquisar" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="txtFSearch" layoutX="197.0" layoutY="14.0" onKeyPressed="#procurarPorEnter" promptText="pesquisar" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="14.0" />
       <Text layoutX="446.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Limite:" wrappingWidth="50.0" AnchorPane.leftAnchor="453.0" AnchorPane.topAnchor="14.6552734375">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="txtLimite" alignment="CENTER_RIGHT" layoutX="503.0" layoutY="14.0" prefHeight="25.0" prefWidth="45.0" promptText="10" AnchorPane.leftAnchor="503.0" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="txtLimite" alignment="CENTER_RIGHT" layoutX="503.0" layoutY="14.0" onKeyPressed="#procurarPorEnter" prefHeight="25.0" prefWidth="45.0" promptText="10" AnchorPane.leftAnchor="503.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

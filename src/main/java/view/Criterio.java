@@ -24,7 +24,7 @@ public class Criterio {
 		String value = valor.toString();
 		if (isNumeric)
 		{
-			System.out.println("replacing");
+			//System.out.println("replacing");
 			value = value.replaceAll("[^\\d.]", "");
 			System.out.println(value);
 			

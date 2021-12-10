@@ -60,6 +60,7 @@ public class AnimalDAO extends DAO {
 		else
 			return Animais.get(0);
 	}
+	
 	public List retrieveByDono(int id_dono)
 	{
 		return retrieve("SELECT * FROM animal WHERE id_cliente ="+id_dono);
@@ -68,11 +69,15 @@ public class AnimalDAO extends DAO {
 	{
 		return retrieve("SELECT * FROM animal");
 	}
+	public List retrieveAll(int top)
+	{
+		return retrieve("SELECT * FROM animal LIMIT "+top);
+	}
 	public List retrieve(String query)
 	{
 		List<Animal> Animais = new ArrayList();
         ResultSet rs = getResultSet(query);
-        
+        if (rs==null) return null;
         try 
         {
         	
@@ -100,19 +105,19 @@ public class AnimalDAO extends DAO {
 	public List retrieveBySimilarName(String nome) 
 	{
         return this.retrieve("SELECT * FROM animal WHERE nome LIKE '%" + nome + "%'");
-    }   
+    } 
 	
 	//Update
 	public void update(Animal an)
 	{
 		try {
 			
-			executeUpdate("UPDATE Animal SET"
-					+ "nome = "+ an.getNome()+","
-					+ "anoNasc = "+ an.getAnoNasc()+","
-					+ "sexo = "+ an.getSexo()+","
-					+ "id_cliente = "+ an.getDonoId()+","
-					+ "id_especie = "+ an.getEspecieId()+" "
+			executeUpdate("UPDATE Animal SET "
+					+ "nome = '"+ an.getNome()+"',"
+					+ "anoNasc = '"+ an.getAnoNasc()+"',"
+					+ "sexo = '"+ an.getSexo()+"',"
+					+ "id_cliente = '"+ an.getDonoId()+"',"
+					+ "id_especie = '"+ an.getEspecieId()+"' "
 					+ "WHERE id ="+ an.getId()
 					);
 		
