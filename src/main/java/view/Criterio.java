@@ -41,5 +41,9 @@ public class Criterio {
 	{
 		return new Criterio("id","id = {value}",true);
 	}
+	public static Criterio CriterioVazio()
+	{
+		return new Criterio("sem criterio","1=1");
+	}
 	
 }

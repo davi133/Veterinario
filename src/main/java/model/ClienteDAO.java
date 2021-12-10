@@ -87,7 +87,7 @@ public class ClienteDAO extends DAO {
         catch (SQLException e) 
         {
         	
-            System.err.println("Exception: " + e.getMessage());
+            System.err.println("Exception ClienteDAO.retrieve(): " + e.getMessage());
         
         }
 		return clientes;

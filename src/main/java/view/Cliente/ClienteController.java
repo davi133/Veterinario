@@ -199,9 +199,10 @@ public class ClienteController implements Initializable{
     private int limitePadrao=10;
     
     private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
+    				Criterio.CriterioVazio(),
     				Criterio.CriterioDeID(),
     				new Criterio("Nome","nome LIKE '%{value}%'"),
-    				new Criterio("Email","email LIKE '%{value}%'"),
+    				new Criterio("Nome","nome LIKE '%{value}%'"),
     				new Criterio("Telefone","telefone LIKE '%{value}%'"),
     				new Criterio("Endereço","end LIKE '%{value}%'"),
     				new Criterio("CEP","cep LIKE '%{value}%'")
@@ -213,7 +214,7 @@ public class ClienteController implements Initializable{
     	String query;
     	String oTexto = txtFSearch.getText();
     	String limite= txtLimite.getText().isBlank()?""+limitePadrao:txtLimite.getText();
-    	Criterio crit = cbCriterio.getValue()==null?Criterio.CriterioDeID():cbCriterio.getValue();
+    	Criterio crit = cbCriterio.getValue()==null?Criterio.CriterioVazio():cbCriterio.getValue();
     	
     	
     	try {
@@ -226,7 +227,7 @@ public class ClienteController implements Initializable{
     			query = "SELECT * FROM cliente LIMIT "+limite+";";
     		}
     		
-    		//System.out.println(query);
+    		System.out.println(query);
     		List<Cliente> lista = DaoInstance.retrieve(query);
     		ObservableList<Cliente> listaOBS = FXCollections.observableArrayList(lista);
     		

@@ -33,6 +33,11 @@
                <content>
                   <fx:include fx:id="ExameTable" source="Exame\\ExameTable.fxml" />
                </content></Tab>
+            <Tab text="Tratamentos">
+               <content>
+                  <fx:include fx:id="Tratamento" source="Tratamento\\TratamentoTable.fxml" />
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Separator layoutY="166.0" prefHeight="11.0" prefWidth="807.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0" />

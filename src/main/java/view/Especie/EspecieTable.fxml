@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Especie.EspecieController">
    <children>
@@ -18,9 +20,15 @@
          </columnResizePolicy>
       </TableView>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Novo" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
-      <Button layoutX="59.0" layoutY="14.0" mnemonicParsing="false" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
-      <Button layoutX="130.0" layoutY="14.0" mnemonicParsing="false" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
+      <Button disable="true" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
+      <Button disable="true" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
       <Button layoutX="366.0" layoutY="14.0" mnemonicParsing="false" text="pesquisar" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="14.0" />
       <TextField layoutX="197.0" layoutY="14.0" promptText="pesquisar" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="14.0" />
+      <Text layoutX="446.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Limite:" wrappingWidth="50.0" AnchorPane.leftAnchor="453.0" AnchorPane.topAnchor="14.6552734375">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtLimite" alignment="CENTER_RIGHT" layoutX="503.0" layoutY="14.0" prefHeight="25.0" prefWidth="45.0" promptText="10" AnchorPane.leftAnchor="503.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>
