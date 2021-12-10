@@ -14,7 +14,7 @@ private static EspecieDAO instesce;
         createTable();
     }
 
-	public static EspecieDAO getInstesce() {
+	public static EspecieDAO getInstance() {
         return (instesce==null?(instesce = new EspecieDAO()):instesce);
     }
 	
@@ -64,11 +64,15 @@ private static EspecieDAO instesce;
 	{
 		return retrieve("SELECT * FROM especie");
 	}
+	public List retrieveAll(int top)
+	{
+		return retrieve("SELECT * FROM especie LIMIT "+top);
+	}
 	public List retrieve(String query)
 	{
 		List<Especie> Especies = new ArrayList();
         ResultSet rs = getResultSet(query);
-        
+        if(rs==null)return null;
         try 
         {
         	

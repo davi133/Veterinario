@@ -11,15 +11,14 @@ import model.Veterinario;
 
 public class SelecionadosController {
 
-	private Cliente cliente;
+	
 	private Animal animal;
-	private Especie especie;
 	private Veterinario veterinario;
 	private Consulta consulta;
 	private Exame exame;
 
-   
-
+	//CLIENTE
+	private Cliente cliente;
     @FXML private Label cl_id;
     @FXML private Label cl_nome;
     @FXML private Label cl_email;
@@ -63,5 +62,40 @@ public class SelecionadosController {
     {
     	return cliente;
     }
+
+    
+    //ESPECIE
+    private Especie especie;
+    @FXML private Label es_id;
+    @FXML private Label es_nome;
+    
+    public void setEspecie(Especie es)
+    {
+    	especie = es;
+    	if (es!=null) 
+    	{   		
+    		es_id.setText(""+es.getId());
+    		
+    		if (es.getNome().length()<=18 || es.getNome().isEmpty())
+    		{
+    			es_nome.setText(es.getNome());
+    		}
+    		else
+    		{
+    			es_nome.setText(es.getNome().substring(0,18)+"...");
+    		}
+    	}
+    	else
+    	{
+    		es_id.setText("id");
+        	es_nome.setText("nome");
+    	}
+    }
+    public Especie getEspecie()
+    {
+    	return especie;
+    }
+
+
 }
 

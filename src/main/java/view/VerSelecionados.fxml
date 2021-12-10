@@ -33,32 +33,39 @@
       <Label layoutX="229.0" layoutY="142.0" text="especie" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="142.0" />
       <Label layoutX="223.0" layoutY="159.0" text="dono" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="159.0" />
       <Separator layoutX="56.0" layoutY="48.0" prefHeight="6.0" prefWidth="615.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="40.0" />
-      <Label layoutX="262.0" layoutY="55.0" text="Veterinario" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="55.0">
+      <Label layoutX="262.0" layoutY="55.0" text="Veterinario" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="55.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="250.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="74.0" />
-      <Label layoutX="250.0" layoutY="91.0" text="nome" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="91.0" />
-      <Label layoutX="345.0" layoutY="108.0" text="email" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="108.0" />
-      <Label layoutX="345.0" layoutY="125.0" text="telefone" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="125.0" />
-      <Label layoutX="395.0" layoutY="55.0" text="Consulta" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="55.0">
+      <Label layoutX="250.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="74.0" />
+      <Label layoutX="250.0" layoutY="91.0" text="nome" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="91.0" />
+      <Label layoutX="345.0" layoutY="108.0" text="email" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="108.0" />
+      <Label layoutX="345.0" layoutY="125.0" text="telefone" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="125.0" />
+      <Label layoutX="395.0" layoutY="55.0" text="Consulta" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="55.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="420.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="74.0" />
-      <Label layoutX="420.0" layoutY="91.0" text="data" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="91.0" />
-      <Label layoutX="421.0" layoutY="108.0" text="animal" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="108.0" />
-      <Label layoutX="421.0" layoutY="125.0" text="veterinario" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="125.0" />
-      <Label layoutX="421.0" layoutY="142.0" text="terminou?" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="142.0" />
-      <Label layoutX="531.0" layoutY="57.0" text="Exame" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="55.0">
+      <Label layoutX="420.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="74.0" />
+      <Label layoutX="420.0" layoutY="91.0" text="data" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="91.0" />
+      <Label layoutX="421.0" layoutY="108.0" text="animal" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="108.0" />
+      <Label layoutX="421.0" layoutY="125.0" text="veterinario" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="125.0" />
+      <Label layoutX="421.0" layoutY="142.0" text="terminou?" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="142.0" />
+      <Label layoutX="531.0" layoutY="57.0" text="Exame" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="55.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="531.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="74.0" />
-      <Label layoutX="536.0" layoutY="91.0" text="Consulta" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="91.0" />
-      <Label layoutX="530.0" layoutY="108.0" prefHeight="17.0" prefWidth="121.0" text="Descrição" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="108.0" />
+      <Label layoutX="531.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="74.0" />
+      <Label layoutX="536.0" layoutY="91.0" text="Consulta" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="91.0" />
+      <Label layoutX="530.0" layoutY="108.0" prefHeight="17.0" prefWidth="121.0" text="Descrição" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="108.0" />
+      <Label layoutX="243.0" layoutY="57.0" prefHeight="17.0" prefWidth="50.0" text="Especie" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="55.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="es_id" layoutX="225.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="74.0" />
+      <Label fx:id="es_nome" layoutX="245.0" layoutY="91.0" text="nome" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="91.0" />
    </children>
 </AnchorPane>

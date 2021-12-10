@@ -24,7 +24,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnNew" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#novoCliente" text="Novo" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
+      <Button fx:id="btnNew" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#novoRegistro" text="Novo" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="btnDelete" disable="true" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" onAction="#excluirSelecionado" text="Excluir" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="btnEdit" disable="true" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#editarSelecionado" text="Editar" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="btnSearch" layoutX="336.0" layoutY="13.0" mnemonicParsing="false" onAction="#procurar" text="pesquisar" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="14.0" />

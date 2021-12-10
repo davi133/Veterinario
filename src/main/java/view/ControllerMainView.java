@@ -11,6 +11,7 @@ import view.Cliente.ClienteController;
 import view.Consulta.ConsultaController;
 import view.Especie.EspecieController;
 import view.Exame.ExameController;
+import view.Tratamento.TratamentoController;
 import view.Veterinario.VeterinarioController;
 
 public class ControllerMainView implements Initializable {
@@ -29,6 +30,8 @@ public class ControllerMainView implements Initializable {
 	private ConsultaController ConsultaTableController;
 	@FXML
 	private VeterinarioController VeterinarioTableController;
+	@FXML
+	private TratamentoController TratamentoTableConroller;
 	
 	@FXML 
 	private Button btnTest;
@@ -46,6 +49,7 @@ public class ControllerMainView implements Initializable {
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ClienteTableController.InjectSelecionadosController(VerSelecionadosController);
+		EspecieTableController.InjectSelecionadosController(VerSelecionadosController);
 		
 		
 	}

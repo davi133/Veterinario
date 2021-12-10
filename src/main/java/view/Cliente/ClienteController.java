@@ -41,10 +41,20 @@ public class ClienteController implements Initializable{
 	
 	
 	private SelecionadosController selecionadosController;
+	public void InjectSelecionadosController(SelecionadosController sc)
+    {
+    	selecionadosController=sc;
+    }
+    public SelecionadosController getSelectCtrl()
+    {
+    	return selecionadosController;
+    }
+    public TableView<Cliente> getTable()
+    {
+    	return Table;
+    }
 	
 	
-	//false: creating new register
-	//true: editing selected register
 	
     @FXML private TableView<Cliente> Table;
    
@@ -55,7 +65,6 @@ public class ClienteController implements Initializable{
     @FXML private TableColumn<Cliente, String> table_endereco;
     @FXML private TableColumn<Cliente, String> table_CEP;
     
-    ObservableList<Cliente> lista = FXCollections.observableArrayList(ClienteDAO.getInstance().retrieveAll());
  
    
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -66,6 +75,8 @@ public class ClienteController implements Initializable{
 		table_telefone.setCellValueFactory(new PropertyValueFactory<Cliente, String>("telefone"));
 		table_endereco.setCellValueFactory(new PropertyValueFactory<Cliente, String>("endereco"));
 		table_CEP.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cep"));
+		
+		ObservableList<Cliente> lista = FXCollections.observableArrayList(ClienteDAO.getInstance().retrieveAll(limitePadrao));
 		Table.setItems(lista);
 		
 		
@@ -100,20 +111,7 @@ public class ClienteController implements Initializable{
 		
 		
 	}
-    
-    public void InjectSelecionadosController(SelecionadosController sc)
-    {
-    	selecionadosController=sc;
-    }
-    public SelecionadosController getSelectCtrl()
-    {
-    	return selecionadosController;
-    }
-    public TableView<Cliente> getTable()
-    {
-    	return Table;
-    }
-    
+  
     public boolean Excluir(Cliente cliente)
     {
     	if(cliente !=null)
@@ -160,9 +158,6 @@ public class ClienteController implements Initializable{
     }
     
     
-    
-    
-    
     //BOTOES ->
     
     @FXML private Button btnNew;
@@ -171,7 +166,7 @@ public class ClienteController implements Initializable{
     
     
  
-    @FXML private void novoCliente()
+    @FXML private void novoRegistro()
     {
     	FichaCliente fc = new FichaCliente(null, this);
     	fc.Show("novo cliente");
@@ -186,7 +181,7 @@ public class ClienteController implements Initializable{
     	if (selecionadosController.getCliente()==null)
     		return;
     	FichaCliente fc = new FichaCliente(selecionadosController.getCliente(), this);
-    	fc.Show("novo cliente");
+    	fc.Show("Editar Cliente");
     }
     
     
@@ -199,14 +194,15 @@ public class ClienteController implements Initializable{
     private int limitePadrao=10;
     
     private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
-    				Criterio.CriterioVazio(),
     				Criterio.CriterioDeID(),
     				new Criterio("Nome","nome LIKE '%{value}%'"),
     				new Criterio("Nome","nome LIKE '%{value}%'"),
     				new Criterio("Telefone","telefone LIKE '%{value}%'"),
     				new Criterio("Endereço","end LIKE '%{value}%'"),
-    				new Criterio("CEP","cep LIKE '%{value}%'")
+    				new Criterio("CEP","cep LIKE '%{value}%'"),
+    				Criterio.CriterioVazio()
     				);
+    
     @FXML private void procurar()
     {
     	ClienteDAO DaoInstance = ClienteDAO.getInstance();
@@ -249,32 +245,5 @@ public class ClienteController implements Initializable{
     		procurar();
 		}
     }
-    
-  //Copiado de https://www.geeksforgeeks.org/how-to-check-if-string-contains-only-digits-in-java/
-    private static boolean onlyDigits(String str)
-    {
-    	// Regex to check string
-        // contains only digits
-        String regex = "[0-9]+";
-        // Compile the ReGex
-        Pattern p = Pattern.compile(regex);
-        // If the string is empty
-        // return false
-        if (str == null) {
-            return false;
-        }  
-        // Find match between given string
-        // and regular expression
-        // using Pattern.matcher()
-        Matcher m = p.matcher(str);  
-        // Return if the string
-        // matched the ReGex
-        return m.matches();
-    }
-    
-    
-    
-   
-	
 	
 }

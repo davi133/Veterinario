@@ -27,14 +27,7 @@ public class FichaCliente extends AnchorPane implements Initializable {
 
 	private Cliente cliente;
 	private ClienteController clienteCtrl;
-
-	public FichaCliente(Cliente cl, ClienteController clienteCtrl)
-	{
-		cliente = cl;
-		this.clienteCtrl= clienteCtrl;
-	}
 	
-		
 	@FXML private Label lbl_ID;
 	@FXML private TextField txt_CEP;
 	@FXML private TextField txt_Nome;
@@ -46,6 +39,11 @@ public class FichaCliente extends AnchorPane implements Initializable {
 	@FXML private Button btnSave;
 	@FXML private Button btnSelect;
 
+	public FichaCliente(Cliente cl, ClienteController clienteCtrl)
+	{
+		cliente = cl;
+		this.clienteCtrl= clienteCtrl;
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -147,7 +145,7 @@ public class FichaCliente extends AnchorPane implements Initializable {
 			}
 			
 			
-		} 
+		}
 		else 
 		{
 			Stage stage = (Stage) btnSave.getScene().getWindow();

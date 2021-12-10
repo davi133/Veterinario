@@ -24,7 +24,10 @@ public class Criterio {
 		String value = valor.toString();
 		if (isNumeric)
 		{
-			value.replaceAll("[^\\d]", "");
+			System.out.println("replacing");
+			value = value.replaceAll("[^\\d.]", "");
+			System.out.println(value);
+			
 		}
 		return query.replace("{value}", value);
 	}
