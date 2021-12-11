@@ -63,8 +63,8 @@ public class ControllerMainView implements Initializable {
 		EspecieTableController.InjectSelecionadosController(VerSelecionadosController);
 		AnimalTableController.InjectSelecionadosController(VerSelecionadosController);
 		
-		AnimalDAO adao = AnimalDAO.getInstance();
-		System.out.println(adao.retrieveAll());
+		/*AnimalDAO adao = AnimalDAO.getInstance();
+		System.out.println(adao.retrieveAll());*/
 	}
 
 

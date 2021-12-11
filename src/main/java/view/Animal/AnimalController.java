@@ -78,7 +78,9 @@ public class AnimalController implements Initializable
 		table_sexo.setCellValueFactory(new PropertyValueFactory<Animal, String>("sexo"));
 		table_dono.setCellValueFactory(new PropertyValueFactory<Animal, Integer>("donoId"));
 		table_especie.setCellValueFactory(new PropertyValueFactory<Animal, Integer>("especieId"));
-
+		
+		
+		
 		ObservableList<Animal> lista = FXCollections
 				.observableArrayList(AnimalDAO.getInstance().retrieveAll(limitePadrao));
 		Table.setItems(lista);
@@ -137,8 +139,8 @@ public class AnimalController implements Initializable
 					selecionadosController.setAnimal(null);
 
 				AnimalDAO.getInstance().delete(animal);
-				// Table.getItems().remove(animal);
-				// Table.refresh();
+				Table.getItems().remove(animal);
+				Table.refresh();
 
 				return true;
 			}
@@ -195,7 +197,7 @@ public class AnimalController implements Initializable
 
 	private ObservableList<Criterio> criterios = FXCollections.observableArrayList(Criterio.CriterioDeID(),
 			new Criterio("Nome", "nome LIKE '%{value}%'"), new Criterio("idade", "anoNasc = {value}"),
-			new Criterio("sexo", "sexo = '{value}'"), new Criterio("dono(id)", "id_cliente = {value}"),
+			new Criterio("sexo('M' ou 'F')", "sexo = '{value}'"), new Criterio("dono(id)", "id_cliente = {value}"),
 			new Criterio("dono(selecionado)", "id_cliente={value}"),
 			new Criterio("especie(selecionado)", "id_especie={value}"), Criterio.CriterioVazio());
 
@@ -224,7 +226,17 @@ public class AnimalController implements Initializable
 
 			if (query.isBlank())
 			{
-				if (!oTexto.isBlank())
+				if (crit.getNome() == "dono(selecionado)" && selecionadosController.getCliente()!=null)
+				{
+					query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getCliente().getId())
+						+ " LIMIT " + limite + ";";
+				} 
+				else if (crit.getNome() == "especie(selecionado)"&&selecionadosController.getEspecie()!=null)
+				{
+					query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getEspecie().getId())
+						+ " LIMIT " + limite + ";";
+				}
+				else if (!oTexto.isBlank())
 				{
 					query = "SELECT * FROM animal WHERE " + crit.getQuery(oTexto) + " LIMIT " + limite + ";";
 				} 

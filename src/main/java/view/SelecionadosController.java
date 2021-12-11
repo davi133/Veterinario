@@ -118,7 +118,7 @@ public class SelecionadosController {
     		an_idade.setText("nasc: "+an.getAnoNasc());		
     		an_sexo.setText(an.getSexo().charAt(0)=='M'?"Macho":"Fêmea");		
   		
-    		Especie esp = EspecieDAO.getInstance().retrieveByID(an.getDonoId());
+    		Especie esp = EspecieDAO.getInstance().retrieveByID(an.getEspecieId());
     		an_especie.setText(esp==null?"indefinido":esp.getNome());
     		
     		
