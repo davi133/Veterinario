@@ -15,7 +15,7 @@ public class SelecionadosController {
 
 	
 	
-	private Veterinario veterinario;
+	
 	private Consulta consulta;
 	private Exame exame;
 
@@ -133,6 +133,10 @@ public class SelecionadosController {
     	{
     		an_id.setText("id");
         	an_nome.setText("nome");
+        	an_idade.setText("nascimento");
+        	an_sexo.setText("sexo");
+        	an_especie.setText("especie");
+        	an_dono.setText("dono");
         	
     	}
     }
@@ -141,12 +145,41 @@ public class SelecionadosController {
     	return animal;
     }
 
-   
     
+    //Veterinario
+    @FXML  private Label vt_id;
+    @FXML private Label vt_nome;
+    @FXML private Label vt_email;
+    @FXML private Label vt_telefone;
+    private Veterinario veterinario;
     
+    public void SetVeterinario(Veterinario vt)
+    {
+    	veterinario =vt;
+    	if (vt!=null) 
+    	{   		
+    		vt_id.setText(""+vt.getId());
+    		vt_nome.setText(clamp(vt.getNome()));	
+    		vt_email.setText(clamp(vt.getEmail()));
+    		vt_telefone.setText(clamp(vt.getTelefone()));
+    	
+    	}
+    	else
+    	{
+    		vt_id.setText("id");
+    		vt_nome.setText("nome");	
+    		vt_email.setText("email");
+    		vt_telefone.setText("telefone");
+        	
+    	}
+    }
+    public Veterinario getVeterinario()
+    {
+    	return veterinario;
+    }
 
     
-    private String clamp(String str)
+     private String clamp(String str)
     {
     	if (str.length()<=18 || str.isEmpty())
 		{

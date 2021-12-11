@@ -14,7 +14,7 @@ private static VeterinarioDAO instvece;
         createTable();
     }
 
-	public static VeterinarioDAO getInstvece() {
+	public static VeterinarioDAO getInstance() {
         return (instvece==null?(instvece = new VeterinarioDAO()):instvece);
     }
 	
