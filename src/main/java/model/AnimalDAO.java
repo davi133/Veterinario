@@ -42,7 +42,7 @@ public class AnimalDAO extends DAO {
 	{
 		Animal an = null;
 		try {
-			an = new Animal(rs.getInt("id"), rs.getString("nome"), rs.getInt("anoNasc"), rs.getString("sexo").charAt(0), 
+			an = new Animal(rs.getInt("id"), rs.getString("nome"), rs.getInt("anoNasc"),""+rs.getString("sexo").charAt(0), 
 					rs.getInt("id_cliente"), rs.getInt("id_especie"));
 		} catch (SQLException e) {
 			e.printStackTrace();

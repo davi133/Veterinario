@@ -35,9 +35,6 @@ public class FichaCliente extends AnchorPane implements Initializable {
 	@FXML private TextField txt_endereco;
 	@FXML private TextField txt_telefone;
 	
-	@FXML private Button btnDelete;
-	@FXML private Button btnSave;
-	@FXML private Button btnSelect;
 
 	public FichaCliente(Cliente cl, ClienteController clienteCtrl)
 	{
@@ -91,6 +88,14 @@ public class FichaCliente extends AnchorPane implements Initializable {
 		stage.show();
 
 	}
+	
+	
+	
+	
+	
+	@FXML private Button btnDelete;
+	@FXML private Button btnSave;
+	@FXML private Button btnSelect;
 	
 	@FXML private void Salvar() 
 	{

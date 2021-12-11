@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import model.AnimalDAO;
 import view.Animal.AnimalController;
 import view.Cliente.ClienteController;
 import view.Consulta.ConsultaController;
@@ -50,8 +51,10 @@ public class ControllerMainView implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ClienteTableController.InjectSelecionadosController(VerSelecionadosController);
 		EspecieTableController.InjectSelecionadosController(VerSelecionadosController);
+		AnimalTableController.InjectSelecionadosController(VerSelecionadosController);
 		
-		
+		AnimalDAO adao = AnimalDAO.getInstance();
+		System.out.println(adao.retrieveAll());
 	}
 
 		

@@ -64,8 +64,6 @@ public class ClienteController implements Initializable{
     @FXML private TableColumn<Cliente, String> table_telefone;
     @FXML private TableColumn<Cliente, String> table_endereco;
     @FXML private TableColumn<Cliente, String> table_CEP;
-    
- 
    
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	

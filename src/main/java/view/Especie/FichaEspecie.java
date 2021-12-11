@@ -50,7 +50,7 @@ public class FichaEspecie extends AnchorPane implements Initializable {
 
 	public void Show(String nome) 
 	{
-		System.out.println("showing ficha especie");
+		
 		Stage stage = new Stage();
 		Scene scene;
 		Parent root = null;

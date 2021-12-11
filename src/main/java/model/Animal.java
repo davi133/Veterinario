@@ -16,11 +16,11 @@ public class Animal {
 	private int id;
 	private String nome;
 	private int anoNasc;
-	private char sexo; //M-Macho, F-Fêmea
+	private String sexo; //M-Macho, F-Fêmea
 	private int especieId;
 	private int donoId;
 	
-	public Animal(Integer id, String nome, Integer anoNasc, char sexo,Integer donoId, Integer especieId) {
+	public Animal(Integer id, String nome, Integer anoNasc, String sexo,Integer donoId, Integer especieId) {
 		this.id = id;
 		this.nome = nome;
 		this.anoNasc = anoNasc;
@@ -41,12 +41,12 @@ public class Animal {
 		return anoNasc;
 	}
 	public void setAnoNasc(Integer idade) {
-		this.anoNasc= anoNasc;
+		this.anoNasc= idade;
 	}
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	public Integer getId() {

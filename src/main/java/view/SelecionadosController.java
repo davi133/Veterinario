@@ -4,15 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import model.Animal;
 import model.Cliente;
+import model.ClienteDAO;
 import model.Consulta;
 import model.Especie;
+import model.EspecieDAO;
 import model.Exame;
 import model.Veterinario;
 
 public class SelecionadosController {
 
 	
-	private Animal animal;
+	
 	private Veterinario veterinario;
 	private Consulta consulta;
 	private Exame exame;
@@ -95,7 +97,76 @@ public class SelecionadosController {
     {
     	return especie;
     }
+    
+    
+    //Animal
+    private Animal animal; 
+    @FXML private Label an_id;
+    @FXML private Label an_nome;
+    @FXML private Label an_idade;
+    @FXML private Label an_sexo;
+    @FXML private Label an_especie;
+    @FXML private Label an_dono;
+   
+    public void setAnimal(Animal an)
+    {
+    	animal = an;
+    	if (an!=null) 
+    	{   		
+    		an_id.setText(""+an.getId());
+    		an_nome.setText(clamp(an.getNome()));	
+    		an_idade.setText("nasc: "+an.getAnoNasc());		
+    		an_sexo.setText(an.getSexo().charAt(0)=='M'?"Macho":"Fêmea");		
+  		
+    		Especie esp = EspecieDAO.getInstance().retrieveByID(an.getDonoId());
+    		an_especie.setText(esp==null?"indefinido":esp.getNome());
+    		
+    		
+    		Cliente dono = ClienteDAO.getInstance().retrieveByID(an.getDonoId());
+    		if (dono!=null)
+    		an_dono.setText(clamp(dono.getNome()+"(id: "+dono.getId()+")"));
+    		else
+    		an_dono.setText("sem dono");
+    	
+    	}
+    	else
+    	{
+    		an_id.setText("id");
+        	an_nome.setText("nome");
+        	
+    	}
+    }
+    public Animal getAnimal() 
+    {
+    	return animal;
+    }
 
+   
+    
+    
 
+    
+    private String clamp(String str)
+    {
+    	if (str.length()<=18 || str.isEmpty())
+		{
+			return str;
+		}
+		else
+		{
+			return str.substring(0,18)+"...";
+		}
+    }
+    private String clamp(String str, int size)
+    {
+    	if (str.length()<=size || str.isEmpty())
+		{
+			return str;
+		}
+		else
+		{
+			return str.substring(0,size)+"...";
+		}
+    }
 }
 

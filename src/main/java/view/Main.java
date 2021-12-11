@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Animal;
+import model.AnimalDAO;
 
 public class Main extends Application {
 
@@ -32,6 +34,12 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		Application.launch(args);
+		
+		/*AnimalDAO adao = AnimalDAO.getInstance();
+		System.out.println(adao.retrieveAll());
+		Animal an=adao.retrieveByID(1);
+		adao.delete(an);
+		System.out.println(adao.retrieveAll());*/
 	}
 }
 
