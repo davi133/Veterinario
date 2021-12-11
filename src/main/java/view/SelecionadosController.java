@@ -153,7 +153,7 @@ public class SelecionadosController {
     @FXML private Label vt_telefone;
     private Veterinario veterinario;
     
-    public void SetVeterinario(Veterinario vt)
+    public void setVeterinario(Veterinario vt)
     {
     	veterinario =vt;
     	if (vt!=null) 
