@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="358.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="420.0" layoutY="543.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+      <Button layoutX="420.0" layoutY="543.0" mnemonicParsing="false" onAction="#Salvar" text="Salvar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="272.0" />
       <Label layoutX="46.0" layoutY="43.0" text="ID" AnchorPane.leftAnchor="50.0">
          <font>
             <Font size="16.0" />
@@ -34,9 +34,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="171.0" layoutY="88.0" AnchorPane.leftAnchor="171.0" />
-      <TextField layoutX="171.0" layoutY="130.0" AnchorPane.leftAnchor="171.0" />
-      <TextField layoutX="171.0" layoutY="171.0" AnchorPane.leftAnchor="171.0" />
-      <Button layoutX="32.0" layoutY="543.0" mnemonicParsing="false" text="Excluir" AnchorPane.bottomAnchor="32.0" />
+      <TextField fx:id="txt_Nome" layoutX="171.0" layoutY="88.0" AnchorPane.leftAnchor="171.0" />
+      <TextField fx:id="txt_email" layoutX="171.0" layoutY="130.0" AnchorPane.leftAnchor="171.0" />
+      <TextField fx:id="txt_telefone" layoutX="171.0" layoutY="171.0" AnchorPane.leftAnchor="171.0" />
+      <Button layoutX="32.0" layoutY="543.0" mnemonicParsing="false" onAction="#Excluir" text="Excluir" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="50.0" />
+      <Button fx:id="btnSelect" layoutX="201.0" layoutY="227.0" mnemonicParsing="false" onAction="#Selecionar" text="Selecionar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="194.0" />
    </children>
-</AnchorPane>
+</fx:root>

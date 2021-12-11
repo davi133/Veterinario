@@ -60,11 +60,15 @@ private static VeterinarioDAO instvece;
 	{
 		return retrieve("SELECT * FROM veterinario");
 	}
+	public List retrieveAll(int top)
+	{
+		return retrieve("SELECT * FROM veterinario LIMIT "+top);
+	}
 	public List retrieve(String query)
 	{
 		List<Veterinario> Veterinarios = new ArrayList();
         ResultSet rs = getResultSet(query);
-        
+        if (rs==null) return null;
         try 
         {
         	
@@ -99,10 +103,10 @@ private static VeterinarioDAO instvece;
 	{
 		try {
 			
-			executeUpdate("UPDATE Veterinario SET"
-					+ "nome = "+ ve.getNome()+","
-					+ "email = "+ ve.getEmail()+","
-					+ "telefone = "+ ve.getTelefone()+" "
+			executeUpdate("UPDATE Veterinario SET "
+					+ "nome = '"+ ve.getNome()+"',"
+					+ "email = '"+ ve.getEmail()+"',"
+					+ "telefone = '"+ ve.getTelefone()+"' "
 					+ "WHERE id ="+ ve.getId()
 					);
 		

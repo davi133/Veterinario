@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="358.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="358.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="btnSave" layoutX="272.0" layoutY="362.0" mnemonicParsing="false" onAction="#Salvar" text="Salvar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="272.0" />
       <Label layoutX="46.0" layoutY="43.0" text="ID" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="43.0">
@@ -50,6 +50,6 @@
       <TextField fx:id="txt_endereco" layoutX="171.0" layoutY="208.0" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="208.0" />
       <TextField fx:id="txt_CEP" layoutX="171.0" layoutY="255.0" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="255.0" />
       <Button fx:id="btnDelete" layoutX="47.0" layoutY="362.0" mnemonicParsing="false" onAction="#Excluir" text="Excluir" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="50.0" />
-      <Button fx:id="btnSelect" layoutX="194.0" layoutY="362.0" mnemonicParsing="false" onAction="#Selecionar" text="Selecionar" AnchorPane.leftAnchor="194.0" />
+      <Button fx:id="btnSelect" layoutX="194.0" layoutY="362.0" mnemonicParsing="false" onAction="#Selecionar" text="Selecionar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="194.0" />
    </children>
 </fx:root>

@@ -168,4 +168,5 @@ public class FichaCliente extends AnchorPane implements Initializable {
 			
 		}
 	}
+
 }
