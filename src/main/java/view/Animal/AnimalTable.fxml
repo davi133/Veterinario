@@ -15,7 +15,7 @@
          <columns>
             <TableColumn fx:id="table_id" editable="false" maxWidth="2000.0" prefWidth="84.0" text="id" />
             <TableColumn fx:id="table_nome" prefWidth="192.0" text="Nome" />
-            <TableColumn fx:id="table_nasc" prefWidth="91.0" text="Nascimento" />
+            <TableColumn fx:id="table_nasc" prefWidth="91.0" text="idade" />
             <TableColumn fx:id="table_sexo" prefWidth="72.0" text="sexo" />
             <TableColumn fx:id="table_dono" prefWidth="209.0" text="dono (id)" />
             <TableColumn fx:id="table_especie" prefWidth="135.0" text="especie (id)" />

@@ -22,7 +22,10 @@ import model.Cliente;
 import model.ClienteDAO;
 import model.Especie;
 import model.EspecieDAO;
+import view.ControllerMainView;
 import view.Animal.AnimalController;
+import view.Cliente.FichaCliente;
+import view.Especie.FichaEspecie;
 
 public class FichaAnimal extends AnchorPane implements Initializable {
 	private Animal animal;
@@ -62,6 +65,7 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 			{
 				txt_Especie.setText(esp.retrieveByID(animal.getEspecieId()).getNome());
 				this.especie=especie;
+				verEspecie.setDisable(false);
 			}
 			else
 				txt_Especie.setText("");
@@ -73,6 +77,8 @@ public class FichaAnimal extends AnchorPane implements Initializable {
     		{
     			txt_Dono.setText(dono.getNome()+"(id: "+dono.getId()+")");
     			this.dono=dono;
+    			verDono.setDisable(false);
+    			
     		}
     			
     		else
@@ -135,8 +141,6 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 		RadioButton rb = (RadioButton) sexGrou.getSelectedToggle();
 		char sexo = rb==null?'F':rb.getText().charAt(0);
 		int nasc = txt_Nascimento.getText().isBlank()?0:Integer.valueOf(txt_Nascimento.getText());
-		System.out.println("sexo: "+sexo);
-		System.out.println("nasc: "+nasc);
 		if (animal==null) 
 		{
 			//salvar novo animal
@@ -177,7 +181,6 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 		//editMode = false;
 
 	}
-
 	@FXML private void Excluir() 
 	{
 
@@ -197,7 +200,6 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 		}
 
 	}
-
 	@FXML private void Selecionar()
 	{
 		if (animal != null) 
@@ -207,22 +209,51 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 		}
 	}
 
+	
+	@FXML private Button verDono;
+    @FXML private Button verEspecie;
+	
 	@FXML private void UsarClienteSelecionado()
 	{
+		dono = animalCtrl.getSelectCtrl().getCliente();
 		
+		if (dono==null)
+		{
+			txt_Dono.setText("");
+			verDono.setDisable(true);
+			
+		}
+		else
+		{
+			txt_Dono.setText(dono.getNome()+"(id: "+dono.getId()+")");
+			verDono.setDisable(false);
+		}
 	}
 	@FXML private void VerClienteSelecionado()
 	{
-		
+		FichaCliente cl = new FichaCliente(dono,ControllerMainView.getPrincipal().getClienteTableController());
+		cl.Show("Ver Dono");
 	}
 	
 	@FXML private void UsarEspecieSelecionado()
 	{
+		especie = animalCtrl.getSelectCtrl().getEspecie();
 		
+		if (especie==null)
+		{
+			txt_Especie.setText("");
+			verEspecie.setDisable(true);
+		}
+		else
+		{
+			txt_Especie.setText(especie.getNome()+"(id: "+especie.getId()+")");
+			verEspecie.setDisable(false);
+		}
 	}
 	@FXML private void VerEspecielecionado()
 	{
-		
+		FichaEspecie cl = new FichaEspecie(especie,ControllerMainView.getPrincipal().getEspecieTableController());
+		cl.Show("Ver Especie");
 	}
 
 }

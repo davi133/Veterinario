@@ -193,7 +193,7 @@ public class ClienteController implements Initializable{
     private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
     				Criterio.CriterioDeID(),
     				new Criterio("Nome","nome LIKE '%{value}%'"),
-    				new Criterio("Nome","nome LIKE '%{value}%'"),
+    				new Criterio("email","email LIKE '%{value}%'"),
     				new Criterio("Telefone","telefone LIKE '%{value}%'"),
     				new Criterio("Endereço","end LIKE '%{value}%'"),
     				new Criterio("CEP","cep LIKE '%{value}%'"),
@@ -220,7 +220,7 @@ public class ClienteController implements Initializable{
     			query = "SELECT * FROM cliente LIMIT "+limite+";";
     		}
     		
-    		System.out.println(query);
+    		//System.out.println(query);
     		List<Cliente> lista = DaoInstance.retrieve(query);
     		ObservableList<Cliente> listaOBS = FXCollections.observableArrayList(lista);
     		
