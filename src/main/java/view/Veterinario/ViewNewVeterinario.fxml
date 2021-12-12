@@ -29,7 +29,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="171.0" layoutY="43.0" text="NULL" AnchorPane.leftAnchor="171.0">
+      <Label fx:id="lbl_ID" layoutX="171.0" layoutY="43.0" text="NULL" AnchorPane.leftAnchor="171.0">
          <font>
             <Font size="16.0" />
          </font>

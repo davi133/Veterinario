@@ -20,7 +20,7 @@ private static VeterinarioDAO instvece;
 	
 	//CRUD
 	//Create
-	public Veterinario create(String nome, String telefone, String email)
+	public Veterinario create(String nome, String email, String telefone)
 	{
 		PreparedStatement stmt;
 		try {

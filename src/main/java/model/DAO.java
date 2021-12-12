@@ -129,7 +129,7 @@ public abstract class DAO {
 			executeUpdate(stmt);
 			// Table veterinario:
 			stmt = DAO.getConnection()
-					.prepareStatement("CREATE TABLE IF NOT EXISTS vet( \n" 
+					.prepareStatement("CREATE TABLE IF NOT EXISTS veterinario( \n" 
 							+ "id INTEGER PRIMARY KEY, \n"
 							+ "nome VARCHAR, \n" 
 							+ "email VARCHAR, \n" 

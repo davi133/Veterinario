@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -26,7 +27,7 @@ import view.Criterio;
 import view.SelecionadosController;
 import view.Veterinario.FichaVeterinario;
 
-public class VeterinarioController {
+public class VeterinarioController implements Initializable {
 
 	@FXML
 	private SelecionadosController selecionadosController;
@@ -46,20 +47,18 @@ public class VeterinarioController {
 	
 	
     @FXML private TableView<Veterinario> Table;
-   
     @FXML private TableColumn<Veterinario, Integer> table_id;
     @FXML private TableColumn<Veterinario, String> table_nome;
     @FXML private TableColumn<Veterinario, String> table_email;
     @FXML private TableColumn<Veterinario, String> table_telefone;
    
-   
+    @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	
     	table_id.setCellValueFactory( new PropertyValueFactory<Veterinario, Integer>("id"));
 		table_nome.setCellValueFactory(new PropertyValueFactory<Veterinario, String>("nome"));
 		table_email.setCellValueFactory(new PropertyValueFactory<Veterinario, String>("email"));
 		table_telefone.setCellValueFactory(new PropertyValueFactory<Veterinario, String>("telefone"));
-		
 		
 		ObservableList<Veterinario> lista = FXCollections.observableArrayList(VeterinarioDAO.getInstance().retrieveAll(limitePadrao));
 		Table.setItems(lista);
@@ -182,8 +181,6 @@ public class VeterinarioController {
     				new Criterio("Nome","nome LIKE '%{value}%'"),
     				new Criterio("email","email LIKE '%{value}%'"),
     				new Criterio("Telefone","telefone LIKE '%{value}%'"),
-    				new Criterio("Endereço","end LIKE '%{value}%'"),
-    				new Criterio("CEP","cep LIKE '%{value}%'"),
     				Criterio.CriterioVazio()
     				);
     

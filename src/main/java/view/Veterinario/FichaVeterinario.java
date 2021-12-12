@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Veterinario;
 import model.VeterinarioDAO;
-import view.Veterinario.VeterinarioController;
 
 public class FichaVeterinario extends AnchorPane implements Initializable
 {

@@ -43,6 +43,12 @@ public class Veterinario {
 	public Integer getId() {
 		return id;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Veterinario [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + "]";
+	}
 	
 	
 }
