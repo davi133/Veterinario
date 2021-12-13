@@ -17,17 +17,16 @@ public class Consulta {
 	
 	private int id;
 	private Date dtConsulta;
-	private String horario;
+	private String horario;//inútil, só não tiro pq teria que mudar outras coisas
 	private String descricao;//comentario
 	private int animalId;
 	private int veterinarioId;
 	private int tratamentoId;
 	private boolean terminou;
 	
-	public Consulta(int id, Date dtConsulta, String horario,String descricao, int animalId, int veterinarioId, int tratamentoId) {
+	public Consulta(int id, Date dtConsulta,String descricao, int animalId, int veterinarioId, int tratamentoId) {
 		this.id = id;
 		this.dtConsulta = dtConsulta;
-		this.horario = horario;
 		this.descricao = descricao;
 		this.animalId = animalId;
 		this.veterinarioId = veterinarioId;

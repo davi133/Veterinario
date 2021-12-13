@@ -3,6 +3,7 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import model.Animal;
+import model.AnimalDAO;
 import model.Cliente;
 import model.ClienteDAO;
 import model.Consulta;
@@ -10,7 +11,9 @@ import model.Especie;
 import model.EspecieDAO;
 import model.Exame;
 import model.Tratamento;
+import model.TratamentoDAO;
 import model.Veterinario;
+import model.VeterinarioDAO;
 
 public class SelecionadosController {
 
@@ -197,17 +200,23 @@ public class SelecionadosController {
     	if (co!=null) 
     	{   		
     		co_id.setText("id:"+co.getId());
-    		co.getDtConsultaString();
-    		co_data.setText("");	
-    		
-    	
+    		co_data.setText(clamp(co.getDtConsultaString()));
+    		Animal ani = AnimalDAO.getInstance().retrieveByID(co.getAnimalId());
+    		co_animal.setText(ani==null?"sem animal":clamp(ani.getNome()+"(id: "+ani.getId()+")"));
+    		Veterinario vet = VeterinarioDAO.getInstance().retrieveByID(co.getVeterinarioId());
+    		co_veterinario.setText(vet==null?"sem veterinario":clamp(vet.getNome()+"(id: "+vet.getId()+")"));
+    		Tratamento trat = TratamentoDAO.getInstance().retrieveByID(co.getTratamentoId());
+    		co_tratamento.setText(trat==null?"sem veterinario":clamp(trat.getNome()+"(id: "+trat.getId()+")"));
+    		co_terminou.setText(co.isTerminou()?"terminado":"não terminado");  	
     	}
     	else
     	{
     		co_id.setText("id");
         	co_data.setText("data");
-        	
-        	
+        	co_animal.setText("animal");
+        	co_veterinario.setText("veterinario");
+        	co_tratamento.setText("tratamento");
+        	co_terminou.setText("terminou?");
     	}
     }
     public Consulta getConsulta()
@@ -220,7 +229,7 @@ public class SelecionadosController {
     
     
     
-     private String clamp(String str)
+    private String clamp(String str)
     {
     	if (str.length()<=18 || str.isEmpty())
 		{

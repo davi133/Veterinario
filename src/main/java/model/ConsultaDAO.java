@@ -23,15 +23,14 @@ private static ConsultaDAO instcoce;
 
 	//CRUD
 	//Create
-	public Consulta create( Date dtConsulta, String horario,String descricao, int animalId, int veterinarioId,int tratamentoId)
+	public Consulta create( Date dtConsulta,String descricao, int animalId, int veterinarioId,int tratamentoId)
 	{
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss.SSS");
 		PreparedStatement stmt;
 		try {
-			stmt = getConnection().prepareStatement("INSERT INTO consulta (data, horario, comentario, id_animal, id_vet, "
+			stmt = getConnection().prepareStatement("INSERT INTO consulta (data, comentario, id_animal, id_vet, "
 							+ "id_tratamento, terminado)"
 							+ "VALUES ('"+formater.format(dtConsulta)+"',"
-										+ horario+ ","
 										+ descricao+ ","
 										+ animalId+ ","
 										+ veterinarioId+ ","
@@ -51,7 +50,7 @@ private static ConsultaDAO instcoce;
 		try {
 			SimpleDateFormat formater = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss.SSS");
 			
-			co = new Consulta(rs.getInt("id"),formater.parse(rs.getString("data")), rs.getString("horario"),
+			co = new Consulta(rs.getInt("id"),formater.parse(rs.getString("data")),
 					rs.getString("comentario") ,rs.getInt("id_animal"), rs.getInt("id_vet"), rs.getInt("id_tratamento"));
 			
 			boolean terminou = rs.getInt("terminado")==0?false:true;;

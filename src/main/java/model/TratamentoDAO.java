@@ -18,7 +18,7 @@ private static TratamentoDAO insttrce;
         createTable();
     }
 
-	public static TratamentoDAO getInsttrce() {
+	public static TratamentoDAO getInstance() {
         return (insttrce==null?(insttrce = new TratamentoDAO()):insttrce);
     }
 	
