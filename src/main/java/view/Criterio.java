@@ -26,7 +26,10 @@ public class Criterio {
 		{
 			//System.out.println("replacing");
 			value = value.replaceAll("[^\\d.]", "");
-			System.out.println(value);
+			if (value.isBlank())
+			{
+				value="0";
+			}
 			
 		}
 		return query.replace("{value}", value);

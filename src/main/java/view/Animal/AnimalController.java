@@ -180,18 +180,15 @@ public class AnimalController implements Initializable
 	private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
 				Criterio.CriterioDeID(),
 				new Criterio("Nome", "nome LIKE '%{value}%'"), 
-				new Criterio("ano de nascimento", "anoNasc = {value}"),
-				new Criterio("nasceu antes de", "anoNasc < {value}"),
-				new Criterio("nasceu depois de", "anoNasc >= {value}"),
+				new Criterio("ano de nascimento", "anoNasc = {value}",true),
+				new Criterio("nasceu antes de", "anoNasc < {value}",true),
+				new Criterio("nasceu depois de", "anoNasc >= {value}",true),
 				new Criterio("sexo('M' ou 'F')", "sexo = '{value}'"), 
-				new Criterio("dono(id)", "id_cliente = {value}"),
-				new Criterio("dono(selecionado)", "id_cliente={value}"),
-				new Criterio("especie(selecionado)", "id_especie={value}"), 
+				new Criterio("dono(id)", "id_cliente = {value}",true),
+				new Criterio("dono(selecionado)", "id_cliente={value}",true),
+				new Criterio("especie(selecionado)", "id_especie={value}",true), 
 				Criterio.CriterioVazio()
 			);
-	
-	
-
 	@FXML
 	private void procurar()
 	{
@@ -202,7 +199,7 @@ public class AnimalController implements Initializable
 		String oTexto = txtFSearch.getText();
 		String limite = txtLimite.getText().isBlank() ? "" + limitePadrao : txtLimite.getText();
 		Criterio crit = cbCriterio.getValue() == null ? Criterio.CriterioVazio() : cbCriterio.getValue();
-
+		crit = oTexto.isBlank()?Criterio.CriterioVazio():crit;
 		try
 		{
 
@@ -216,16 +213,11 @@ public class AnimalController implements Initializable
 				query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getEspecie().getId())
 					+ " LIMIT " + limite + ";";
 			}
-			else if (query.isBlank())
+			else
 			{
-				if (!oTexto.isBlank())
-				{
-					query = "SELECT * FROM animal WHERE " + crit.getQuery(oTexto) + " LIMIT " + limite + ";";
-				} 
-				else
-				{
-					query = "SELECT * FROM animal LIMIT " + limite + ";";
-				}
+				
+				query = "SELECT * FROM animal WHERE " + crit.getQuery(oTexto) + " LIMIT " + limite + ";";
+				
 			}
 
 			//System.out.println(query);

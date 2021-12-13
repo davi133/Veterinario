@@ -48,7 +48,9 @@ public class FichaConsulta extends AnchorPane implements Initializable
 
     @FXML private Label lbl_ID;
     @FXML private DatePicker dt_data;
-    @FXML private TextField txt_rorario;
+    @FXML private TextField hor_hora;
+    @FXML private TextField hor_min;
+    @FXML private TextField hor_seg;
     @FXML private TextField txt_animal;
     @FXML private TextField txt_veterinario;
     @FXML private CheckBox ckb_finalizado;
@@ -69,6 +71,7 @@ public class FichaConsulta extends AnchorPane implements Initializable
 			AnimalDAO ani = AnimalDAO.getInstance();
 			VeterinarioDAO vet = VeterinarioDAO.getInstance();
 			TratamentoDAO trat = TratamentoDAO.getInstance();
+			
 			
 			
 		} 
@@ -186,7 +189,7 @@ public class FichaConsulta extends AnchorPane implements Initializable
 	{
 		
 	}
-	@FXML private void VerVeterinariolecionado()
+	@FXML private void VerVeterinarioSelecionado()
 	{
 		
 	}
@@ -196,7 +199,7 @@ public class FichaConsulta extends AnchorPane implements Initializable
 	{
 		
 	}
-	@FXML private void VerTratamentolecionado()
+	@FXML private void VerTratamentoSelecionado()
 	{
 		
 	}

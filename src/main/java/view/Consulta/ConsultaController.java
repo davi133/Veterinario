@@ -1,6 +1,7 @@
 package view.Consulta;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -47,34 +48,29 @@ public class ConsultaController implements Initializable {
 		return Table;
 	}
 
-	@FXML
-	private TableView<Consulta> Table;
-	@FXML
-	private TableColumn<Consulta, Integer> table_id;
-	@FXML
-	private TableColumn<Consulta, String> table_nome;
-	@FXML
-	private TableColumn<Consulta, Integer> table_nasc;
-	@FXML
-	private TableColumn<Consulta, String> table_sexo;
-	@FXML
-	private TableColumn<Consulta, Integer> table_dono;
-	@FXML
-	private TableColumn<Consulta, Integer> table_especie;
-
+	@FXML private TableView<Consulta> Table;
+	@FXML private TableColumn<Consulta, Integer> table_id;
+	@FXML private TableColumn<Consulta, Date> table_data;
+	@FXML private TableColumn<Consulta, Integer> table_animal;
+	@FXML private TableColumn<Consulta, Integer> table_veterinario;
+    @FXML private TableColumn<Consulta, Boolean> table_terminou;
+    @FXML private TableColumn<Consulta, String> table_comentario;
+   
+    
+    
+    
 	public void initialize(URL arg0, ResourceBundle arg1)
 	{
 		table_id.setCellValueFactory(new PropertyValueFactory<Consulta, Integer>("id"));
-		table_nome.setCellValueFactory(new PropertyValueFactory<Consulta, String>("nome"));
-		table_nasc.setCellValueFactory(new PropertyValueFactory<Consulta, Integer>("anoNasc"));
-		table_sexo.setCellValueFactory(new PropertyValueFactory<Consulta, String>("sexo"));
-		table_dono.setCellValueFactory(new PropertyValueFactory<Consulta, Integer>("donoId"));
-		table_especie.setCellValueFactory(new PropertyValueFactory<Consulta, Integer>("especieId"));
+		table_data.setCellValueFactory(new PropertyValueFactory<Consulta, Date>("dtConsulta"));
+		table_animal.setCellValueFactory(new PropertyValueFactory<Consulta, Integer>("animalId"));
+		table_veterinario.setCellValueFactory(new PropertyValueFactory<Consulta, Integer>("veterinarioId"));
+		table_terminou.setCellValueFactory(new PropertyValueFactory<Consulta, Boolean>("terminou"));
+		table_comentario.setCellValueFactory(new PropertyValueFactory<Consulta, String>("descricao"));
 		
 		
 		
-		ObservableList<Consulta> lista = FXCollections
-				.observableArrayList(ConsultaDAO.getInstance().retrieveAll(limitePadrao));
+		ObservableList<Consulta> lista = FXCollections.observableArrayList(ConsultaDAO.getInstance().retrieveAll(limitePadrao));
 		Table.setItems(lista);
 
 		Table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -176,14 +172,13 @@ public class ConsultaController implements Initializable {
 
 	private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
 				Criterio.CriterioDeID(),
-				new Criterio("Nome", "nome LIKE '%{value}%'"), 
-				new Criterio("ano de nascimento", "anoNasc = {value}"),
-				new Criterio("nasceu antes de", "anoNasc < {value}"),
-				new Criterio("nasceu depois de", "anoNasc >= {value}"),
-				new Criterio("sexo('M' ou 'F')", "sexo = '{value}'"), 
-				new Criterio("dono(id)", "id_cliente = {value}"),
-				new Criterio("dono(selecionado)", "id_cliente={value}"),
-				new Criterio("especie(selecionado)", "id_especie={value}"), 
+				new Criterio("Data", "data LIKE '%{value}%'"), 
+				new Criterio("animal(id)", "id_animal = {value}", true),
+				new Criterio("animal(selecionado)", "id_animal = {value}",true),
+				new Criterio("veterinario(id)", "id_vet= {value}",true),
+				new Criterio("veterinario(selecionado)", "id_vet= {value}",true), 
+				new Criterio("terminou(S ou N)", "terminado = {value}",true),
+				new Criterio("comentário", "comentario LIKE '%{value}%'"),
 				Criterio.CriterioVazio()
 			);
 	
@@ -203,20 +198,24 @@ public class ConsultaController implements Initializable {
 		try
 		{
 
-			if (crit.getNome() == "dono(selecionado)" && selecionadosController.getCliente()!=null)
+			if (crit.getNome() == "animal(selecionado)" && selecionadosController.getAnimal()!=null)
 			{
-				query = "SELECT * FROM consulta WHERE " + crit.getQuery(selecionadosController.getCliente().getId())
+				query = "SELECT * FROM consulta WHERE " + crit.getQuery(selecionadosController.getAnimal().getId())
 					+ " LIMIT " + limite + ";";
 			} 
-			else if (crit.getNome() == "especie(selecionado)"&&selecionadosController.getEspecie()!=null)
+			else if (crit.getNome() == "veterinario(selecionado)"&&selecionadosController.getVeterinario()!=null)
 			{
-				query = "SELECT * FROM consulta WHERE " + crit.getQuery(selecionadosController.getEspecie().getId())
+				query = "SELECT * FROM consulta WHERE " + crit.getQuery(selecionadosController.getVeterinario().getId())
 					+ " LIMIT " + limite + ";";
 			}
-			else if (query.isBlank())
+			else
 			{
 				if (!oTexto.isBlank())
 				{
+					if (crit.getNome() == "terminou(S ou N)")
+					{
+						oTexto = oTexto.toLowerCase().charAt(0)=='s'?"1":"0";
+					}
 					query = "SELECT * FROM consulta WHERE " + crit.getQuery(oTexto) + " LIMIT " + limite + ";";
 				} 
 				else

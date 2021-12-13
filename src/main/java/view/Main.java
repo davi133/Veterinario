@@ -20,7 +20,7 @@ public class Main extends Application {
 			
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("VetSys");
-			
+			primaryStage.setHeight(600);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 	

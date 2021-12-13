@@ -177,13 +177,14 @@ public class ClienteController implements Initializable{
     {
     	if (selecionadosController.getCliente()==null)
     		return;
-    	FichaCliente fc = new FichaCliente(selecionadosController.getCliente(), this);
+    	FichaCliente fc = new FichaCliente(selecionadosController. getCliente(), this);
     	fc.Show("Editar Cliente");
     }
     
     
-    //PESQUISA ->
     
+    
+    //PESQUISA ->
     @FXML private TextField txtFSearch;
     @FXML private Button btnSearch;
     @FXML private ComboBox<Criterio> cbCriterio;

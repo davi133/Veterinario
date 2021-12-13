@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="485.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="btnSave" layoutX="420.0" layoutY="543.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="272.0" />
       <Label layoutX="46.0" layoutY="43.0" text="ID" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="43.0">
@@ -42,7 +42,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_rorario" layoutX="171.0" layoutY="130.0" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="130.0" />
       <TextField fx:id="txt_animal" disable="true" layoutX="171.0" layoutY="171.0" promptText="sem animal" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="171.0" />
       <TextField fx:id="txt_veterinario" disable="true" layoutX="171.0" layoutY="208.0" promptText="sem veterinario" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="208.0" />
       <Button fx:id="btnDelete" layoutX="32.0" layoutY="543.0" mnemonicParsing="false" text="Excluir" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="50.0" />
@@ -67,5 +66,18 @@
       <TextField fx:id="txt_tratamento" disable="true" layoutX="168.0" layoutY="425.0" promptText="sem tratamento" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="425.0" />
       <Button layoutX="320.0" layoutY="425.0" mnemonicParsing="false" onAction="#UsarTratamentoSelecionado" text="Usar selecionado" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="425.0" />
       <Button fx:id="verTratamento" disable="true" layoutX="426.0" layoutY="425.0" mnemonicParsing="false" onAction="#VerTratamentoSelecionado" text="Ver" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="425.0" />
+      <TextField fx:id="hor_hora" alignment="CENTER_RIGHT" layoutX="168.0" layoutY="130.0" prefHeight="25.0" prefWidth="39.0" promptText="hora" AnchorPane.leftAnchor="171.0" />
+      <TextField fx:id="hor_min" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="130.0" prefHeight="25.0" prefWidth="39.0" promptText="min" AnchorPane.leftAnchor="219.0" />
+      <TextField fx:id="hor_seg" alignment="CENTER_RIGHT" layoutX="272.0" layoutY="130.0" prefHeight="25.0" prefWidth="39.0" promptText="seg" AnchorPane.leftAnchor="269.0" />
+      <Label layoutX="263.0" layoutY="128.0" text=":" AnchorPane.leftAnchor="261.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="210.0" layoutY="128.0" text=":" AnchorPane.leftAnchor="212.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
-</AnchorPane>
+</fx:root>
