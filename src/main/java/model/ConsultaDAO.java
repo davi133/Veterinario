@@ -17,7 +17,7 @@ private static ConsultaDAO instcoce;
         createTable();
     }
 
-	public static ConsultaDAO getInstcoce() {
+	public static ConsultaDAO getInstance() {
         return (instcoce==null?(instcoce = new ConsultaDAO()):instcoce);
     }
 
@@ -81,11 +81,15 @@ private static ConsultaDAO instcoce;
 	{
 		return retrieve("SELECT * FROM consulta");
 	}
+	public List retrieveAll(int top)
+	{
+		return retrieve("SELECT * FROM consulta LIMIT "+top);
+	}
 	public List retrieve(String query)
 	{
 		List<Consulta> Consultas = new ArrayList();
         ResultSet rs = getResultSet(query);
-        
+        if (rs==null)return null;
         try 
         {
         	
@@ -117,10 +121,10 @@ private static ConsultaDAO instcoce;
 		try {
 			
 			int terminou = co.isTerminou()?1:0;
-			executeUpdate("UPDATE Consulta SET"
-					+ "data = "+ co.getDtConsultaString()+","
-					+ "horario = "+ co.getHorario()+","
-					+ "comentario = "+ co.getDescricao()+","
+			executeUpdate("UPDATE Consulta SET "
+					+ "data = '"+ co.getDtConsultaString()+"',"
+					+ "horario = '"+ co.getHorario()+"',"
+					+ "comentario = '"+ co.getDescricao()+"',"
 					+ "id_animal = "+ co.getAnimalId()+","
 					+ "id_vet = "+ co.getVeterinarioId()+","
 					+ "id_tratamento = "+ co.getTratamentoId()+","
@@ -130,9 +134,7 @@ private static ConsultaDAO instcoce;
 		} 
 		catch (SQLException e) 
 		{
-		
 			e.printStackTrace();
-		
 		}
 		
 	}

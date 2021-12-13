@@ -1,6 +1,6 @@
 package view.Animal;
 
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +9,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,16 +21,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
+
 import model.Animal;
-import model.Animal;
+
 import model.AnimalDAO;
-import model.Cliente;
-import model.ClienteDAO;
-import view.ControllerMainView;
+
 import view.Criterio;
 import view.SelecionadosController;
-import view.Animal.FichaAnimal;
+
 
 public class AnimalController implements Initializable
 {
@@ -104,20 +99,7 @@ public class AnimalController implements Initializable
 		cbCriterio.getSelectionModel().selectedItemProperty().addListener(
 			(options, oldValue, newValue) -> 
 			{
-				String query="no";
-				String limite = txtLimite.getText().isBlank() ? "" + limitePadrao : txtLimite.getText();
-				if (newValue.getNome() == "dono(selecionado)" && selecionadosController.getCliente()!=null)
-				{
-					query = "SELECT * FROM animal WHERE " + newValue.getQuery(selecionadosController.getCliente().getId())
-						+ " LIMIT " + limite + ";";
-				} 
-				else if (newValue.getNome() == "especie(selecionado)"&&selecionadosController.getEspecie()!=null)
-				{
-					query = "SELECT * FROM animal WHERE " + newValue.getQuery(selecionadosController.getEspecie().getId())
-						+ " LIMIT " + limite + ";";
-				}
-				
-				procurarWithQuery(query);
+				procurar();
 			});
 
 	}
@@ -195,28 +177,28 @@ public class AnimalController implements Initializable
 	private TextField txtLimite;
 	private int limitePadrao = 10;
 
-	private ObservableList<Criterio> criterios = FXCollections.observableArrayList(Criterio.CriterioDeID(),
-			new Criterio("Nome", "nome LIKE '%{value}%'"), new Criterio("idade", "anoNasc = {value}"),
-			new Criterio("sexo('M' ou 'F')", "sexo = '{value}'"), new Criterio("dono(id)", "id_cliente = {value}"),
-			new Criterio("dono(selecionado)", "id_cliente={value}"),
-			new Criterio("especie(selecionado)", "id_especie={value}"), Criterio.CriterioVazio());
+	private ObservableList<Criterio> criterios = FXCollections.observableArrayList(
+				Criterio.CriterioDeID(),
+				new Criterio("Nome", "nome LIKE '%{value}%'"), 
+				new Criterio("ano de nascimento", "anoNasc = {value}"),
+				new Criterio("nasceu antes de", "anoNasc < {value}"),
+				new Criterio("nasceu depois de", "anoNasc >= {value}"),
+				new Criterio("sexo('M' ou 'F')", "sexo = '{value}'"), 
+				new Criterio("dono(id)", "id_cliente = {value}"),
+				new Criterio("dono(selecionado)", "id_cliente={value}"),
+				new Criterio("especie(selecionado)", "id_especie={value}"), 
+				Criterio.CriterioVazio()
+			);
+	
+	
 
 	@FXML
 	private void procurar()
 	{
-		procurarWithQuery(" ");
-	}
-
-	@FXML
-	private void procurarWithQuery(String statement)
-	{
-		if (statement =="no") return;
-		// System.out.println("função temporariamente desativada");
+		
 		AnimalDAO DaoInstance = AnimalDAO.getInstance();
 
-		String query = statement;
-		;
-
+		String query=" ";
 		String oTexto = txtFSearch.getText();
 		String limite = txtLimite.getText().isBlank() ? "" + limitePadrao : txtLimite.getText();
 		Criterio crit = cbCriterio.getValue() == null ? Criterio.CriterioVazio() : cbCriterio.getValue();
@@ -224,19 +206,19 @@ public class AnimalController implements Initializable
 		try
 		{
 
-			if (query.isBlank())
+			if (crit.getNome() == "dono(selecionado)" && selecionadosController.getCliente()!=null)
 			{
-				if (crit.getNome() == "dono(selecionado)" && selecionadosController.getCliente()!=null)
-				{
-					query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getCliente().getId())
-						+ " LIMIT " + limite + ";";
-				} 
-				else if (crit.getNome() == "especie(selecionado)"&&selecionadosController.getEspecie()!=null)
-				{
-					query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getEspecie().getId())
-						+ " LIMIT " + limite + ";";
-				}
-				else if (!oTexto.isBlank())
+				query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getCliente().getId())
+					+ " LIMIT " + limite + ";";
+			} 
+			else if (crit.getNome() == "especie(selecionado)"&&selecionadosController.getEspecie()!=null)
+			{
+				query = "SELECT * FROM animal WHERE " + crit.getQuery(selecionadosController.getEspecie().getId())
+					+ " LIMIT " + limite + ";";
+			}
+			else if (query.isBlank())
+			{
+				if (!oTexto.isBlank())
 				{
 					query = "SELECT * FROM animal WHERE " + crit.getQuery(oTexto) + " LIMIT " + limite + ";";
 				} 

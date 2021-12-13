@@ -47,11 +47,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="420.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="74.0" />
-      <Label layoutX="420.0" layoutY="91.0" text="data" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="91.0" />
-      <Label layoutX="421.0" layoutY="108.0" text="animal" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="108.0" />
-      <Label layoutX="421.0" layoutY="125.0" text="veterinario" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="125.0" />
-      <Label layoutX="421.0" layoutY="142.0" text="terminou?" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="142.0" />
+      <Label fx:id="co_id" layoutX="420.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="74.0" />
+      <Label fx:id="co_data" layoutX="420.0" layoutY="91.0" text="data" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="91.0" />
+      <Label fx:id="co_animal" layoutX="421.0" layoutY="108.0" text="animal" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="108.0" />
+      <Label fx:id="co_veterinario" layoutX="421.0" layoutY="125.0" text="veterinario" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="125.0" />
+      <Label fx:id="co_terminou" layoutX="421.0" layoutY="142.0" text="terminou?" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="159.0" />
       <Label layoutX="531.0" layoutY="57.0" text="Exame" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="55.0">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -67,5 +67,6 @@
       </Label>
       <Label fx:id="es_id" layoutX="225.0" layoutY="74.0" text="id" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="74.0" />
       <Label fx:id="es_nome" layoutX="245.0" layoutY="91.0" text="nome" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="91.0" />
+      <Label fx:id="co_tratamento" layoutX="508.0" layoutY="142.0" text="tratamento" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="142.0" />
    </children>
 </AnchorPane>

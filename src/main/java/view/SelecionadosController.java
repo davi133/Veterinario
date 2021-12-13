@@ -9,6 +9,7 @@ import model.Consulta;
 import model.Especie;
 import model.EspecieDAO;
 import model.Exame;
+import model.Tratamento;
 import model.Veterinario;
 
 public class SelecionadosController {
@@ -16,9 +17,11 @@ public class SelecionadosController {
 	
 	
 	
-	private Consulta consulta;
+	
 	private Exame exame;
-
+	private Tratamento tratamento;
+	
+	
 	//CLIENTE
 	private Cliente cliente;
     @FXML private Label cl_id;
@@ -31,7 +34,7 @@ public class SelecionadosController {
     	cliente = cl;
     	if (cl!=null) 
     	{   		
-    		cl_id.setText(""+cl.getId());
+    		cl_id.setText("id:"+cl.getId());
     		
     		if (cl.getNome().length()<=18 || cl.getNome().isEmpty())
     		{
@@ -76,7 +79,7 @@ public class SelecionadosController {
     	especie = es;
     	if (es!=null) 
     	{   		
-    		es_id.setText(""+es.getId());
+    		es_id.setText("id:"+es.getId());
     		
     		if (es.getNome().length()<=18 || es.getNome().isEmpty())
     		{
@@ -113,7 +116,7 @@ public class SelecionadosController {
     	animal = an;
     	if (an!=null) 
     	{   		
-    		an_id.setText(""+an.getId());
+    		an_id.setText("id:"+an.getId());
     		an_nome.setText(clamp(an.getNome()));	
     		an_idade.setText("nasc: "+an.getAnoNasc());		
     		an_sexo.setText(an.getSexo().charAt(0)=='M'?"Macho":"Fêmea");		
@@ -158,7 +161,7 @@ public class SelecionadosController {
     	veterinario =vt;
     	if (vt!=null) 
     	{   		
-    		vt_id.setText(""+vt.getId());
+    		vt_id.setText("id:"+vt.getId());
     		vt_nome.setText(clamp(vt.getNome()));	
     		vt_email.setText(clamp(vt.getEmail()));
     		vt_telefone.setText(clamp(vt.getTelefone()));
@@ -178,6 +181,44 @@ public class SelecionadosController {
     	return veterinario;
     }
 
+    
+    //Consulta
+    @FXML private Label co_id;
+    @FXML private Label co_data;
+    @FXML private Label co_animal;
+    @FXML private Label co_veterinario;
+    @FXML private Label co_tratamento;
+    @FXML private Label co_terminou;
+    private Consulta consulta;
+   
+    public void setConsulta(Consulta co)
+    {
+    	consulta = co;
+    	if (co!=null) 
+    	{   		
+    		co_id.setText("id:"+co.getId());
+    		co.getDtConsultaString();
+    		co_data.setText("");	
+    		
+    	
+    	}
+    	else
+    	{
+    		co_id.setText("id");
+        	co_data.setText("data");
+        	
+        	
+    	}
+    }
+    public Consulta getConsulta()
+    {
+    	return consulta;
+    }
+    
+    
+    
+    
+    
     
      private String clamp(String str)
     {
