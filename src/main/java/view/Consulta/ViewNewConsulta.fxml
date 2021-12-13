@@ -4,14 +4,15 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="420.0" layoutY="543.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="32.0" />
-      <Label layoutX="46.0" layoutY="43.0" text="ID" AnchorPane.leftAnchor="50.0">
+      <Button fx:id="btnSave" layoutX="420.0" layoutY="543.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="272.0" />
+      <Label layoutX="46.0" layoutY="43.0" text="ID" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="43.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -36,20 +37,35 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="171.0" layoutY="43.0" text="NULL" AnchorPane.leftAnchor="171.0">
+      <Label fx:id="lbl_ID" layoutX="171.0" layoutY="43.0" text="NULL" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="43.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="171.0" layoutY="130.0" AnchorPane.leftAnchor="171.0" />
-      <TextField layoutX="171.0" layoutY="171.0" AnchorPane.leftAnchor="171.0" />
-      <TextField layoutX="171.0" layoutY="208.0" AnchorPane.leftAnchor="171.0" />
-      <Button layoutX="32.0" layoutY="543.0" mnemonicParsing="false" text="Excluir" AnchorPane.bottomAnchor="32.0" />
-      <DatePicker layoutX="163.0" layoutY="88.0" AnchorPane.leftAnchor="171.0" />
-      <CheckBox layoutX="45.0" layoutY="262.0" mnemonicParsing="false" text="Finalizado" AnchorPane.leftAnchor="50.0" />
-      <Button layoutX="319.0" layoutY="171.0" mnemonicParsing="false" text="Usar selecionado" AnchorPane.leftAnchor="325.0" />
-      <Button layoutX="319.0" layoutY="208.0" mnemonicParsing="false" text="Usar selecionado" AnchorPane.leftAnchor="325.0" />
-      <Button layoutX="431.0" layoutY="171.0" mnemonicParsing="false" text="Ver" AnchorPane.leftAnchor="437.0" />
-      <Button layoutX="437.0" layoutY="208.0" mnemonicParsing="false" text="Ver" AnchorPane.leftAnchor="437.0" />
+      <TextField fx:id="txt_rorario" layoutX="171.0" layoutY="130.0" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="130.0" />
+      <TextField fx:id="txt_animal" disable="true" layoutX="171.0" layoutY="171.0" promptText="sem animal" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="171.0" />
+      <TextField fx:id="txt_veterinario" disable="true" layoutX="171.0" layoutY="208.0" promptText="sem veterinario" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="208.0" />
+      <Button fx:id="btnDelete" layoutX="32.0" layoutY="543.0" mnemonicParsing="false" text="Excluir" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="50.0" />
+      <DatePicker fx:id="dt_data" layoutX="163.0" layoutY="88.0" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="88.0" />
+      <CheckBox fx:id="ckb_finalizado" disable="true" layoutX="45.0" layoutY="262.0" mnemonicParsing="false" text="Finalizado" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="255.0" />
+      <Button layoutX="320.0" layoutY="171.0" mnemonicParsing="false" onAction="#UsarAnimalSelecionado" text="Usar selecionado" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="171.0" />
+      <Button layoutX="320.0" layoutY="208.0" mnemonicParsing="false" onAction="#UsarVeterinarioSelecionado" text="Usar selecionado" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="208.0" />
+      <Button fx:id="verAnimal" disable="true" layoutX="426.0" layoutY="171.0" mnemonicParsing="false" onAction="#VerAnimalSelecionado" text="Ver" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="171.0" />
+      <Button fx:id="verVeterinario" disable="true" layoutX="426.0" layoutY="208.0" mnemonicParsing="false" onAction="#VerVeterinarioSelecionado" text="Ver" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="208.0" />
+      <Button fx:id="btnSelect" layoutX="204.0" layoutY="372.0" mnemonicParsing="false" onAction="#Selecionar" text="Selecionar" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="194.0" />
+      <Label layoutX="45.0" layoutY="289.0" text="Comentários" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="295.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txt_comentario" layoutX="172.0" layoutY="300.0" prefHeight="112.0" prefWidth="255.0" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="295.0" />
+      <Label layoutX="38.0" layoutY="425.0" text="tratamento" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="425.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_tratamento" disable="true" layoutX="168.0" layoutY="425.0" promptText="sem tratamento" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="425.0" />
+      <Button layoutX="320.0" layoutY="425.0" mnemonicParsing="false" onAction="#UsarTratamentoSelecionado" text="Usar selecionado" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="425.0" />
+      <Button fx:id="verTratamento" disable="true" layoutX="426.0" layoutY="425.0" mnemonicParsing="false" onAction="#VerTratamentoSelecionado" text="Ver" AnchorPane.leftAnchor="426.0" AnchorPane.topAnchor="425.0" />
    </children>
 </AnchorPane>

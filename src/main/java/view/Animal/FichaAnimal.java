@@ -32,7 +32,6 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 	private AnimalController animalCtrl;
 	private Cliente dono=null;
 	private Especie especie=null;
-	//private Cliente dono;
 	
 	
 	@FXML private Label lbl_ID;
@@ -256,4 +255,5 @@ public class FichaAnimal extends AnchorPane implements Initializable {
 		cl.Show("Ver Especie");
 	}
 
+	
 }
